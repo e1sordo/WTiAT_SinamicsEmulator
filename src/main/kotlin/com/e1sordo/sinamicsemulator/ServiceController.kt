@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
-data class ConnectRequest(val ipAddress: String, val rack: String, val slot: String)
+data class ConnectRequest(val rack: String, val slot: String)
 
 data class ReadWriteRequest(val param: Int, val index: Int, val value: String)
 
@@ -31,7 +31,7 @@ class ServiceController(
 
     @PostMapping("/connect")
     fun connect(@RequestBody request: ConnectRequest): Response =
-            SimpleResponse(if (request == ConnectRequest("192.168.0.55", "0", "2")) 0 else 1)
+            SimpleResponse(if (request == ConnectRequest("0", "2")) 0 else 1)
 
 
     val zeroMinutes = 0..60 step 3
